@@ -2,14 +2,11 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="qilehe">
-
-    
     <meta property="og:url"           content="https://qilehe.github.io/" />
     <meta property="og:type"          content="website" />
     <meta property="og:title"         content="Qile Photography" />
@@ -17,18 +14,14 @@
     <meta property="og:image"         content="https://www.bestofweddingphotography.com/wp-content/images/Vasilis_M_001.jpg" />
 
     <title>Qile Photography</title>
-
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="css/agency.css" rel="stylesheet">
-   <link href="css/preloader.css" rel="stylesheet">
+    <link href="css/preloader.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">    
-  
     <link href='https://fonts.googleapis.com/css?family=Quattrocento|Codystar:300,400|Kaushan+Script' rel='stylesheet'>
-
 </head>
 
 <body id="page-top" class="index">
@@ -41,7 +34,6 @@
        </div>
      </div> 
     </div>
-
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -84,13 +76,10 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <!-- Header data-vide-bg="video/wedding" data-vide-options="loop: true, muted: false, position: 0% 0%"-->
-    <!-- background-color: #7ACCCA -->
-    <!-- mp4: video/wedding_compressed.mp4 https://s3-us-west-2.amazonaws.com/hql-sjj-wedding-video/wedding_compressed.mp4-->
 
-    <!-- data-vide-bg="mp4: https://s3-us-west-2.amazonaws.com/hql-sjj-wedding-video/wedding+dress_new.mp4, poster: video/wedding" data-vide-options="loop: true, muted: true, position: 0% 0%, resizing: true, posterType: 'detect'" -->
+    <!-- https://s3-us-west-2.amazonaws.com/hql-sjj-wedding-video/wedding_website.mp4 -->
     <header>
-        <div id="vide"  data-vide-bg="mp4: https://s3-us-west-2.amazonaws.com/hql-sjj-wedding-video/wedding_website.mp4" data-vide-options="loop: true, muted: true, position: 0% 0%">
+        <div id="vide"  data-vide-bg="mp4: video/wedding_new.mp4" data-vide-options="loop: true, muted: true, position: 0% 0%">
             <div class="container" id="header-container"> 
                 <div class="intro-text">
                     <div class="intro-lead-in">Qile Wedding Photography</div>
@@ -98,7 +87,7 @@
           </div>
        </div> 
     </header>
-    
+     <!-- Gallery Section -->
     <section id="pictures" class="grad-section-bottom">
          <div class="container">
             <div class="row">
@@ -108,6 +97,7 @@
                 </div>
             </div>
             <div class="row">
+                <!-- Gallery on facebook and its associated likes -->
                 <div class="col-md-8 col-md-offset-2 col-sm-12">
                     <div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
                       <ol class="carousel-indicators" id="indicators-group"></ol>
@@ -116,7 +106,7 @@
                 </div>
                 <!-- like and share on facebook -->
                 <div class="col-md-8 col-md-offset-2 col-sm-12" style="margin-top: 20px">
-                       <div class="fb-like" data-layout="standard" data-action="like" data-href="http://qilehe.github.io" data-size="small" data-show-faces="true" data-share="true"></div>
+                       <div class="fb-like" data-layout="standard" data-action="like" data-href="http://qilehe.github.io" data-size="large" data-show-faces="true" data-share="true"></div>
                 </div>
             </div>
         </div>
@@ -214,10 +204,8 @@
     </footer>
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="js/classie.js"></script>
@@ -228,29 +216,23 @@
     <script src="js/contact_me.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="js/agency.js"></script>
-    <script src="js/display-photos.js"></script>
+    <script src="js/display_photos.js"></script>
     <!-- Preloader -->
    <script type="text/javascript">
         $(window).load(function() { // makes sure the whole site is loaded
             $('#status').fadeOut(); // will first fade out the loading animation
             $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
             $('body').delay(350).css({'overflow':'visible'});
-            
             //load facebook pictures
             loadPicture();
         });
        
         // make sure div stays full width/height on resize
-       // global vars
-        // var winWidth = $(window).width();
         $(window).ready(function() { 
             var winHeight = ($(window).width()/2)*1.1;
             $('#header-container').css({
               'height': winHeight,
              });
-    
-            //slider show
-            $('.carousel').carousel(); 
         });
         // // make sure div stays full width/height on resize
         $(window).resize(function(){
@@ -258,7 +240,6 @@
             $('#header-container').css({
               'height': winHeight,
              });
-           // $('#header-container').css('height', '');
         });
 
     //]]>

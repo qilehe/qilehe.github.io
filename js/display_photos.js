@@ -1,4 +1,5 @@
 var accessToken = 'EAACpcpF29kEBAHe5U68IjS7ddP6XnYSG9OQrN7cNDdjZC7ir63VUXysVEFPZApxocOY4FPVSHlVcUJ9KnGza0IS97p7RKeW9zfYH2lVo62mmZBZBJAm1I5o7IDDC5tPaQhh15XZCeZCa6xzQlDxcMROzUqPFwLCSYZD';
+var albumID = '748550208656844';
 
 window.fbAsyncInit = function() {
     FB.init({
@@ -20,7 +21,11 @@ window.fbAsyncInit = function() {
 
 //get photos from album
 function loadPicture(){
-  FB.api('748550208656844/photos?type=uploaded&access_token=' + accessToken, 'get', loadPhotosCallback);
+  FB.api(
+    albumID + '/photos?type=uploaded&access_token=' + accessToken, 
+    'get', 
+    loadPhotosCallback
+    );
 }
 
 function loadPhotosCallback(response){
@@ -28,17 +33,21 @@ function loadPhotosCallback(response){
     var isFirst = true;
     for(var i = 0; i < response.data.length; i++){
       initSlidesIndicators(i)
-      loadImage(response.data[i].id, isFirst);
+      loadImageAndLikes(response.data[i].id, isFirst);
       isFirst = false;
     }
 }
 
-function loadImage(id, isFirst){
-    FB.api(id + '?fields=likes,images&access_token=' + accessToken, 'get', function (response){
-      loadImageCallback(isFirst, response);
+function loadImageAndLikes(id, isFirst){
+    FB.api(
+      id + '?fields=likes,images&access_token=' + accessToken, 
+      'get', 
+      function (response){
+        loadImageCallback(isFirst, response);
     });
 }
-
+// //slider show
+   //         $('.carousel').carousel(); 
 function loadImageCallback(isFirst, response){
     console.log(JSON.stringify(response));
     var url = response.images[1]["source"];

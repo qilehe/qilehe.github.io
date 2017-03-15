@@ -96,11 +96,11 @@ function getPageAccessToken(){
   FB.api('/' + pageId + '?fields=access_token', 'get', function(response){
      console.log(response);
       pageAccessToken = response.access_token;
-
-      getAndUpdatePosts();
+      getPosts();
       getPageViewNumber();
   });
 }
+
 
 function post(){
     var message_val = $("#message").val();
@@ -122,6 +122,7 @@ function post(){
           if(response["id"] != null){
               showSucessMessage('Your post has been published.', '#success-post');
               $('#post-form').trigger("reset");
+              getPosts();
           }
           else{
               showErrorMessage('#success-post');
@@ -158,6 +159,7 @@ function postad(){
           if(response["id"] != null){
               showSucessMessage('Your unpublished post has been created.', '#success-ad');
               $('#ad-form').trigger("reset");
+              getPosts();
           }
           else{
               showErrorMessage('#success-ad');
@@ -166,59 +168,43 @@ function postad(){
     }
 }
 
-
-function getAndUpdatePosts(){
-    getPost(true);
-    getPost(false);
+//newly written
+function getPosts(){
+  FB.api(
+    pageId + '/promotable_posts?fields=is_published,message',
+    'get',
+     getPostsCallback
+    );
 }
 
-function getPost(published){
-  FB.api('/'+ pageId +'/promotable_posts?is_published=' + published + '&access_token=' + pageAccessToken, 
+function getPostsCallback(response){
+  $("#published-posts").html("");
+  $("#unpublished-posts").html("");
+  for(var i = 0; i < response.data.length; i++){
+    var ele = response.data[i];
+    if(ele == null || ele.message == null) continue;
+    var listid = ele.is_published? "published-posts" : "unpublished-posts";
+    updateList(listid, ele.id, ele.message);
+    getPostViewerNumber(ele.id);
+  }
+}
+
+function updateList(listid, id, message){
+   $("#" + listid).append('<li class="list-group-item"> <span class="hidden" id="' + id + '" ></span>' + message + '</li>');
+}
+
+function getPostViewerNumber(postId){
+  FB.api(
+     postId +'/insights/post_impressions_unique?access_token=' + pageAccessToken, 
     'get', 
     function(response){
-     console.log(JSON.stringify(response));
-     updatePosts(response["data"], published);
-  });
-}
-
-function updatePosts(list, published){
-    if(published){
-        updateList("published-posts", list);
-        updateViewNum("published-posts");
-    }
-    else{
-        updateList("unpublished-posts", list);
-        updateViewNum("unpublished-posts");
-    }
-}
-
-function updateList(listid, data){
-  $("#" + listid).html("");
-  for(var i = 0; i < data.length; i++){
-    $("#" + listid).append('<li class="list-group-item"> <span class="hidden post-id">' + data[i].id + '</span>' + data[i].message + '</li>');
-  }
-
-}
-
-function updateViewNum(id){
-  $("#"+ id + " .post-id").each(function(){
-    var element = $(this)
-    var postId = $(this).text();
-    getPostViewerNumber(postId, element);
-  });
-}
-
-function getPostViewerNumber(postId, element){
-  FB.api(postId +'/insights/post_impressions_unique?access_token=' + pageAccessToken, 'get', function(response){
-     var num = response.data[0].values[0].value;
-     element.parent().append('<span class="badge">' + num + '</span>');
-    }
-  );
+      var num = response.data[0].values[0].value;
+      $("#"+postId).parent().append('<span class="badge">' + num + '</span>');
+    });
  }
 
 function getPageViewNumber(){
   FB.api('/'+ pageId +'/insights/page_views_total?period=days_28&access_token=' + pageAccessToken, 'get', function(response){
-
      console.log(JSON.stringify(response));
      var vararr=response.data[0].values;
      var pageViewNum = vararr[vararr.length - 1].value;
@@ -236,7 +222,7 @@ function getPageViewNumber(){
   });
 }
 
- function showSignOut(){
+function showSignOut(){
    $("#sign-in").hide();
    $("#not-you").show();
    $("#sign-out").show();
