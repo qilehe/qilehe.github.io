@@ -230,7 +230,7 @@ function getPageViewNumber(){
  function share(){
       FB.ui({
       method: 'send',
-      link: 'http://www.qilehe.jiajunshen.com'
+      link: 'https://qilehe.github.io'
     }, function(response){
       console.log(JSON.stringify(response));
   });
