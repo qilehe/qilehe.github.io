@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Qile & Jiajun - Facebook</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/agency.css" rel="stylesheet">
+   <link href="css/preloader.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">    
+     <link href="css/bootstrap-social.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Quattrocento|Codystar:300,400|Kaushan+Script' rel='stylesheet'>
+ </head>
+
+<body id="page-top" class="index">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="/q-photography"> Qile Photography</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#posts">Update Page</a>
+                    </li>
+                     <li>
+                        <a class="page-scroll" href="#ad">Create Ad</a>
+                    </li>
+                    <li>
+                        <a id="view-other" class="page-scroll" href="#view-posts">View Posts</a>
+                    </li>
+                     <li>
+                        <a class="page-scroll" href="#share">Send Message</a>
+                    </li>
+                      <a id="top-a" class="page-scroll" href="#page-top"></a>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+  <header class="header-height-600" style="background-image:url(img/bg.jpg); background-position: center center;">
+      <div class="container" id="header-container" style="position: relative;"> 
+            <div class="header-content">
+             <div class="intro-text">
+                  <div class="intro-lead-in">Hello Photographer<span id='fb-name'></span></div>
+             </div>
+
+              <div id="login">
+                <h4 id="not-you">Not you?</h4>
+                <a id="sign-in" class="btn btn-social btn-facebook" onclick="fbLogin()">
+                      <span class="fa fa-facebook"></span>
+                      <span id="sign-in">Sign in</span>     
+                </a>
+                <a id="sign-out" class="btn btn-social btn-facebook" hidden onclick="fbLogout()">
+                    <span class="fa fa-facebook"></span>
+                    <span>Sign out</span>
+                </a>
+              </div>
+            </div>
+      </div> 
+  </header>
+    <section id="posts" class="grad-section-bottom">
+        <div class="container">
+         <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Update Facebook Page</h2>
+                <h3 class="section-subheading text-muted">Update on facebook page</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <form id="post-form" class="col-sm-12 col-md-8 col-md-offset-2">
+                      <div class="form-group col-sm-12">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" rows="3" placeholder="Status update..."></textarea>
+                      </div>
+                      <div class="form-group col-sm-12">
+                        <label for="exampleInputFile">Link URL</label>
+                        <input type="text" class="form-control" id="linkUrl">
+                      </div>
+                      <div class="form-group col-sm-12">
+                        <label for="exampleInputFile">Image URL</label>
+                        <input type="text" class="form-control" id="imageUrl">
+                      </div>
+                      <div class="form-group col-sm-12">
+                        <div id="success-post"></div>
+                     </div>
+                      <div class="col-sm-12">
+                        <button type="button" class="btn btn-primary" onclick="post()">Post to Facebook</button>
+                    </div>
+                 </form>
+                </div>
+            </div>
+            <!-- <div id="visitor-post"></div> -->
+       </div>
+     </section>
+
+
+     <section id="view-posts" class="bg-light-tiffany">
+        <div class="container">
+            <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading">Create An Ad</h2>
+                        <h3 class="section-subheading text-muted">Create an unpubished post as ad</h3>
+                    </div>
+              </div>
+              <form id="ad-form" class="col-sm-12 col-md-8 col-md-offset-2">
+                     <div class="form-group col-sm-12">
+                        <label>Photography Location</label>
+                     </div>
+                      <div class="form-group col-sm-12">
+                          <label class="custom-control custom-radio">
+                            <input id="international" name="location" type="radio" value="international" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">International</span>
+                        </label>
+                        <label class="custom-control custom-radio">
+                            <input id="usa" name="location" type="radio" value="us" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">United States</span>
+                        </label>
+                         <label class="custom-control custom-radio">
+                            <input id="local" name="location" type="radio" value="local" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Local</span>
+                        </label>
+                      </div>
+
+                      <div class="form-group col-sm-12">
+                          <label>Photography Type</label>
+                     </div>
+                      <div class="form-group col-sm-12">
+                          <label class="custom-control custom-radio">
+                              <input id="engagement-photo" name="photo-type" type="radio" value="engagement" class="custom-control-input">
+                              <span class="custom-control-indicator"></span>
+                              <span class="custom-control-description">Engagement</span>
+                          </label>
+                          <label class="custom-control custom-radio">
+                              <input id="wedding-photo" name="photo-type" type="radio" value="wedding" class="custom-control-input">
+                              <span class="custom-control-indicator"></span>
+                              <span class="custom-control-description">Wedding</span>
+                          </label>
+                           <label class="custom-control custom-radio">
+                              <input id="anniversary-photo" name="photo-type" type="radio" value="anniversary" class="custom-control-input">
+                              <span class="custom-control-indicator"></span>
+                              <span class="custom-control-description">Anniversary</span>
+                          </label>
+                      </div>
+                      <div class="form-group col-sm-12">
+                        <label for="ad-message">Message</label>
+                        <textarea id="ad-message" class="form-control" rows="3" placeholder="description..."></textarea>
+                      </div>
+                      <div class="form-group col-sm-12">
+                        <label for="exampleInputFile">Link URL</label>
+                        <input type="text" class="form-control" id="ad-linkUrl">
+                      </div>
+                      <div class="form-group col-sm-12">
+                        <label for="exampleInputFile">Image URL</label>
+                        <input type="text" class="form-control" id="ad-imageUrl">
+                      </div>
+                      <div class="form-group col-sm-12">
+                        <div id="success-ad"></div>
+                     </div>
+                      <div class="col-sm-12">
+                        <button type="button" class="btn btn-primary" onclick="postad()">Creat Facebook Ad</button>
+                        <!-- <button type="button" onclick="getPosts()">test</button>
+                        <button type="button" onclick="updateViewNum()">num</button> -->
+                    </div>
+                   
+            </form>
+       </div>
+     </section>
+
+       <section id="view-posts" class="bg-light-tiffany">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading">View Others Posts</h2>
+                        <h3 class="section-subheading text-muted">View posts from my facebook page <span id="total-page-view"></span></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-offset-2 col-lg-4">
+                        <div class="list-group col-sm-12">
+                            <h3>Published Posts</h3>
+                            <ul id="published-posts" class="list-group">Please log in first.</ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="list-group col-sm-12">
+                            <h3>Unpublished Posts</h3>
+                            <ul id="unpublished-posts" class="list-group">Please log in first.</ul>
+                         </div>
+                  </div>
+            </div>
+        </div>
+     </section>
+
+
+     <section id="share" class="grad-section-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Send Message</h2>
+                    <h3 class="section-subheading text-muted">Click the button below to send facebook message!</h3>
+                </div>
+            </div>
+            <div class="row">
+                 <div class="col-lg-12 text-center">
+                    <button type="button" onclick="share()" class="btn btn-primary">Send on Facebook</button>
+                 </div>
+               
+            </div>
+        </div>
+    </section>
+  
+    <footer class = "bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <span class="copyright">Copyright &copy; Qile He 2017</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li>
+                            <span class="copyright">Graphic Resource: </span>
+                            <a href="http://www.freepik.com">Designed by Freepik</a>
+                        </li>
+                    </ul>
+                </div> 
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="js/agency.js"></script>
+    <script src="js/facebook.js"></script>
+    <!-- Preloader 
+   <script type="text/javascript"></script>
+   -->
+</body>
+
+</html>
