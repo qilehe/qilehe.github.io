@@ -37,10 +37,25 @@
     });
     fbq('trackcustom', 'testCustomLowercase');
     fbq('trackCustom', 'testuppercase');
-    fbq('track', 'Purchase', {currency: 'EUR', value: null});
-    fbq('track', 'Purchase', {currency: 'EUR', value: ''});
-    fbq('track', 'Purchase', {currency: 'EUR', value: 12});
-    fbq('track', 'Purchase', {currency: 'EUR', value: 12.12});
+   fbq('track', 'Purchase', {
+    contents: [
+    {
+      'id': '1234',
+      'quantity': 2,
+      'item_price': 10,
+       'brand' : 'brand_1',
+    },
+    {
+      'id': '4642',
+      'quantity': 1,
+      'item_price': 5,
+       'brand': 'brand_2',
+    }
+  ],
+  content_type: 'product',
+  value: 25.00,
+  currency: 'USD'
+});
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=646868555499367&ev=testCustomLowercase&noscript=1"
